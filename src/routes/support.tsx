@@ -7,12 +7,6 @@ import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/support")({
   component: Support,
-  head: () => ({
-    meta: [
-      { title: "Customer Support — DONBBANG" },
-      { name: "description", content: "Contact support 24/7." },
-    ],
-  }),
 });
 
 const faqs = [

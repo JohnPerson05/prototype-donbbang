@@ -9,14 +9,6 @@ import hero from "@/assets/hero-prize-match.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  head: () => ({
-    meta: [
-      { title: "DONBBANG — Esports Prize Matchmaking" },
-      { name: "description", content: "Compete in 1v1 prize matches across your favorite esports titles. Create or join matches, recruit teammates, and win." },
-      { property: "og:title", content: "DONBBANG — Esports Prize Matchmaking" },
-      { property: "og:description", content: "Compete in 1v1 prize matches across your favorite esports titles." },
-    ],
-  }),
 });
 
 const quickLinks = [

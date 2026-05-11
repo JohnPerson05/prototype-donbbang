@@ -11,12 +11,6 @@ import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/recruit")({
   component: Recruit,
-  head: () => ({
-    meta: [
-      { title: "Team Recruit — DONBBANG" },
-      { name: "description", content: "Find teammates and post recruit calls." },
-    ],
-  }),
 });
 
 const quickFilters = ["All", "Recruiting", "Looking for Team", "Jungler", "Top Laner", "Mid Laner", "ADC", "Support"];

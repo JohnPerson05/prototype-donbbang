@@ -6,12 +6,6 @@ import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/announcements")({
   component: Announcements,
-  head: () => ({
-    meta: [
-      { title: "Announcements — DONBBANG" },
-      { name: "description", content: "Latest platform announcements." },
-    ],
-  }),
 });
 
 type RowType = "NOTICE" | "MAINTENANCE" | "EVENT" | "ETC.";

@@ -11,12 +11,6 @@ import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/community")({
   component: Community,
-  head: () => ({
-    meta: [
-      { title: "Community — DONBBANG" },
-      { name: "description", content: "Player community and discussions." },
-    ],
-  }),
 });
 
 function Community() {

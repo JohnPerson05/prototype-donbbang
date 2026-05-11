@@ -13,12 +13,6 @@ import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/live-match")({
   component: LiveMatch,
-  head: () => ({
-    meta: [
-      { title: "Live Match — DONBBANG" },
-      { name: "description", content: "Browse and join active prize matches." },
-    ],
-  }),
 });
 
 const stakeFilters = ["All", "Under 10K", "10K ~ 30K", "30K ~ 50K", "50K ~ 100K", "Over 100K"];

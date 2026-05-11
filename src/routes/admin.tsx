@@ -32,12 +32,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export const Route = createFileRoute("/admin")({
   component: Admin,
-  head: () => ({
-    meta: [
-      { title: "Admin — MoneyBread" },
-      { name: "description", content: "Admin dashboard." },
-    ],
-  }),
 });
 
 const topTiles = [

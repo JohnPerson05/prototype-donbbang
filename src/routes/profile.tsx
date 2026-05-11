@@ -5,12 +5,6 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
-  head: () => ({
-    meta: [
-      { title: "My Page — DONBBANG" },
-      { name: "description", content: "Your profile, stats, and match history." },
-    ],
-  }),
 });
 
 const myGames = [

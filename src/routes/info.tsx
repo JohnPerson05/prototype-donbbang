@@ -10,12 +10,6 @@ import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/info")({
   component: InfoSharing,
-  head: () => ({
-    meta: [
-      { title: "Info Sharing — DONBBANG" },
-      { name: "description", content: "Guides and shared knowledge." },
-    ],
-  }),
 });
 
 const infoRows = [
