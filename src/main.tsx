@@ -4,7 +4,13 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { routeTree } from "./routeTree.gen";
+import { preloadCinematicAssets } from "./lib/preload-cinematic";
 import "./styles.css";
+
+// Warm the browser cache for the cinematic PNGs (fist-clash, fist-power, vs)
+// before the user can click Create/Join Match. Fire-and-forget, runs in
+// parallel with the initial React render so startup is not blocked.
+preloadCinematicAssets();
 
 const queryClient = new QueryClient();
 

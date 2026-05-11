@@ -1,20 +1,14 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import fistPower from "@/assets/fist-power.png";
 
 /**
  * Cinematic "APPLICATION COMPLETE" / "MATCH CREATED" scene.
  *
- * Width-first sizing (mirrors MatchmakingScene so the transition between
- * the two scenes is continuous):
- *   • compact = true  → scene width = column width.
- *   • compact = false → scene width caps at `min(92vw, 720px)`.
- *
- * The image height follows from its natural aspect — it never stretches
- * vertically to fill the container. Edge blending uses a radial mask
- * plus `mix-blend-mode: screen` so no square or hard border is visible.
- *
- * The image itself is static. Motion lives only in the ambient halo
- * and expanding shockwaves.
+ * Mirrors MatchmakingScene's width-first sizing and decode gating so
+ * transitioning between the two feels continuous and the artwork is
+ * always painted on the first open (no "blank on first click" regression
+ * in production).
  */
 
 const EDGE_MASK =
@@ -29,19 +23,41 @@ export function MatchCreatedScene({
   sub?: string;
   compact?: boolean;
 }) {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const img = new Image();
+    img.decoding = "async";
+    if ("fetchPriority" in img) {
+      (img as HTMLImageElement & { fetchPriority: string }).fetchPriority = "high";
+    }
+    img.src = fistPower;
+    img
+      .decode()
+      .then(() => {
+        if (!cancelled) setReady(true);
+      })
+      .catch(() => {
+        if (img.complete) {
+          if (!cancelled) setReady(true);
+        } else {
+          img.onload = () => !cancelled && setReady(true);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none overflow-hidden">
-      {/* Full-bleed red ambient vignette */}
+      {/* Red ambient vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,oklch(0.35_0.2_25/0.45),transparent_65%)]" />
 
-      {/* Image stack — width-driven, height follows image aspect */}
       <div
         className="relative w-full"
-        style={
-          compact
-            ? { maxWidth: "100%" }
-            : { maxWidth: "min(92vw, 720px)" }
-        }
+        style={compact ? { maxWidth: "100%" } : { maxWidth: "min(92vw, 720px)" }}
       >
         {/* Halo extends past the image so the red glow reaches corners */}
         <motion.div
@@ -67,14 +83,16 @@ export function MatchCreatedScene({
           />
         ))}
 
-        {/* Power-fist artwork — width-driven, natural height, static */}
+        {/* Power-fist artwork — fades in only once decoded */}
         <motion.img
           src={fistPower}
           alt=""
           aria-hidden
           draggable={false}
+          decoding="async"
+          loading="eager"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: ready ? 1 : 0 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
           className="relative block w-full h-auto select-none"
           style={{
@@ -85,7 +103,7 @@ export function MatchCreatedScene({
         />
       </div>
 
-      {/* Caption centered below the image */}
+      {/* Caption */}
       <div
         className={`relative z-[2] flex flex-col items-center text-center px-2 ${
           compact ? "mt-1" : "mt-4"
