@@ -6,6 +6,7 @@ import { FindInfoModal } from "@/components/modals/FindInfoModal";
 import { SignUpModal } from "@/components/modals/SignUpModal";
 import { useApp } from "@/store/app";
 import { useT } from "@/lib/i18n";
+import logo from "@/assets/logo.png";
 
 export function Navbar() {
   const path = useRouterState({ select: (s) => s.location.pathname });
@@ -33,10 +34,14 @@ export function Navbar() {
     <>
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border">
         <div className="max-w-[1500px] mx-auto px-3 md:px-6 h-[64px] flex items-center justify-between gap-3 md:gap-6">
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold via-primary to-primary/60 flex items-center justify-center font-display font-black text-[15px] shadow-[var(--shadow-neon)]">
-              D
-            </div>
+          <Link to="/" className="flex items-center gap-2 shrink-0" aria-label="DONBBANG home">
+            <img
+              src={logo}
+              alt=""
+              aria-hidden
+              className="h-10 md:h-11 w-auto select-none"
+              draggable={false}
+            />
             <span className="font-display font-black text-[18px] md:text-[20px] tracking-wide leading-none italic">
               <span className="text-gold">DON</span>
               <span className="text-primary">BBANG</span>

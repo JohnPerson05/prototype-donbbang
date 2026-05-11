@@ -5,7 +5,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { games } from "@/data/mock";
-import hero from "@/assets/hero-prize-match.jpg";
+import hero from "@/assets/hero-prize-match.png";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -22,44 +22,19 @@ const quickLinks = [
 function Home() {
   return (
     <Shell>
-      {/* Hero - PRIZE MATCH banner */}
+      {/* Hero - PRIZE MATCH banner (image-only, no overlay) */}
       <motion.section
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="relative overflow-hidden rounded-xl border border-border"
       >
-        <img src={hero} alt="Prize Match" width={1600} height={800} className="w-full h-[300px] object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.08_25)]/70 via-[oklch(0.13_0.02_260)]/50 to-[oklch(0.18_0.08_240)]/70" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="font-display text-[13px] tracking-[0.2em] font-semibold text-foreground/90 uppercase">
-            Intense Player vs Player Showdown
-          </div>
-          <div className="font-display text-[54px] font-black tracking-tight text-foreground leading-none mt-1 drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
-            PRIZE MATCH
-          </div>
-          <div className="mt-3 font-display text-[40px] font-black italic text-primary drop-shadow-[0_0_20px_oklch(0.62_0.24_25/0.8)]">
-            VS
-          </div>
-
-          <div className="flex items-center justify-between w-full max-w-[640px] px-10 mt-4">
-            <div className="flex flex-col items-center gap-1.5">
-              <div className="w-[68px] h-[68px] rounded-full bg-primary/90 flex items-center justify-center text-[30px] font-display font-black shadow-[0_0_30px_oklch(0.62_0.24_25/0.7)]">
-                A
-              </div>
-              <span className="font-display font-bold tracking-[0.2em] text-[11px]">PLAYER A</span>
-            </div>
-            <Button className="btn-neon border-0 h-11 px-10 font-display font-black text-[14px] tracking-[0.15em]">
-              JOIN NOW!
-            </Button>
-            <div className="flex flex-col items-center gap-1.5">
-              <div className="w-[68px] h-[68px] rounded-full bg-[oklch(0.55_0.2_240)]/90 flex items-center justify-center text-[30px] font-display font-black shadow-[0_0_30px_oklch(0.55_0.2_240/0.7)]">
-                B
-              </div>
-              <span className="font-display font-bold tracking-[0.2em] text-[11px]">PLAYER B</span>
-            </div>
-          </div>
-        </div>
+        <img
+          src={hero}
+          alt="Prize Match"
+          className="w-full h-auto block select-none"
+          draggable={false}
+        />
       </motion.section>
 
       {/* Quick Links */}
