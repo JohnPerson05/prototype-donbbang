@@ -1,0 +1,219 @@
+/* Korean-native premium font stack - Pretendard is the de-facto standard on Korean gaming portals */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon: var(--neon);
+  --color-neon-blue: var(--neon-blue);
+  --color-gold: var(--gold);
+  --color-success: var(--success);
+  --color-panel: var(--panel);
+  --color-panel-elevated: var(--panel-elevated);
+  /* Display font used for esports-style uppercase flair (PRIZE MATCH, JOIN NOW!) */
+  --font-display: "Rajdhani", "Pretendard Variable", "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  /* Sans is the base Korean-native premium stack */
+  --font-sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Inter", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Dark gaming palette */
+  --background: oklch(0.13 0.02 260);
+  --foreground: oklch(0.97 0.005 250);
+
+  --panel: oklch(0.17 0.025 260);
+  --panel-elevated: oklch(0.20 0.028 260);
+
+  --card: oklch(0.17 0.025 260);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.16 0.025 260);
+  --popover-foreground: oklch(0.97 0.005 250);
+
+  /* Red neon primary */
+  --primary: oklch(0.62 0.24 25);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.22 0.03 260);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.22 0.025 260);
+  --muted-foreground: oklch(0.65 0.02 260);
+  --accent: oklch(0.25 0.04 260);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --destructive: oklch(0.6 0.24 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.27 0.02 260);
+  --input: oklch(0.22 0.025 260);
+  --ring: oklch(0.62 0.24 25);
+
+  --neon: oklch(0.65 0.26 22);
+  --neon-blue: oklch(0.7 0.2 240);
+  --gold: oklch(0.82 0.16 85);
+  --success: oklch(0.7 0.2 145);
+
+  --gradient-hero: linear-gradient(135deg, oklch(0.18 0.04 25 / 0.7), oklch(0.13 0.02 260 / 0.4) 50%, oklch(0.18 0.04 240 / 0.7));
+  --gradient-red: linear-gradient(135deg, oklch(0.62 0.24 25), oklch(0.5 0.22 18));
+  --gradient-panel: linear-gradient(180deg, oklch(0.18 0.025 260), oklch(0.14 0.022 260));
+  --shadow-neon: 0 0 24px oklch(0.62 0.24 25 / 0.45), 0 0 60px oklch(0.62 0.24 25 / 0.2);
+  --shadow-blue: 0 0 24px oklch(0.7 0.2 240 / 0.45);
+  --shadow-panel: 0 6px 30px oklch(0 0 0 / 0.5);
+}
+
+.dark {
+  /* Same — single dark theme */
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    /* Compact Korean esports body size */
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "ss03", "cv10", "kern";
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.005em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(ellipse at top, oklch(0.2 0.04 25 / 0.15), transparent 60%),
+      radial-gradient(ellipse at bottom right, oklch(0.2 0.04 240 / 0.12), transparent 60%);
+    background-attachment: fixed;
+  }
+  /* Korean-native typography never mixes Latin and Korean with SaaS spacing */
+  :lang(ko), [lang="ko"] {
+    font-family: "Pretendard Variable", "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  /* Rajdhani only applies when explicitly requested via .font-display - gives the condensed esports uppercase flair */
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.005em;
+  }
+  input, textarea, select, button { font-family: inherit; }
+  /* Tighter, sharper form typography for the esports feel */
+  input::placeholder, textarea::placeholder {
+    color: oklch(0.55 0.02 260);
+    font-weight: 400;
+  }
+}
+
+@layer utilities {
+  .panel {
+    background: var(--gradient-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-panel);
+  }
+  .panel-glow {
+    box-shadow: var(--shadow-panel), inset 0 1px 0 oklch(1 0 0 / 0.04);
+  }
+  .neon-text {
+    color: var(--neon);
+    text-shadow: 0 0 12px oklch(0.62 0.24 25 / 0.6);
+  }
+  .neon-border {
+    border: 1px solid oklch(0.62 0.24 25 / 0.5);
+    box-shadow: 0 0 16px oklch(0.62 0.24 25 / 0.25), inset 0 0 12px oklch(0.62 0.24 25 / 0.08);
+  }
+  .btn-neon {
+    background: var(--gradient-red);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-neon);
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+  .btn-neon:hover { transform: translateY(-1px); filter: brightness(1.08); }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+
+  /* Esports typography utilities — tiny, compact, uppercase, sharp */
+  .text-esports-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .text-esports-caption {
+    font-size: 11px;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .text-esports-mini {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .text-esports-body {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .text-esports-nav {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .text-esports-panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .text-esports-h3 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  .text-esports-h2 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.018em;
+  }
+  .text-esports-h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .tracking-korean {
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+  }
+}
